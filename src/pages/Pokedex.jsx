@@ -156,14 +156,14 @@ const Pokedex = () => {
       <li onClick={() => setCurrentPage(1)} className='p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer'>{"<<"}</li>
         <li onClick={handleClickPreviusPage} className='p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer'>{"<"}</li>
         {
-          pagesInBlock.map(numberPage => <li onClick={() => setCurrentPage(numberPage)} className={`hover:bg-red-400 p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer ${numberPage === currentPage && "bg-white text-red-600 border-[3px] border-red-600"}`} key={numberPage}>{numberPage}</li>)
+          pagesInBlock.map(numberPage => <li onClick={() => setCurrentPage(numberPage)} className={`hover:bg-red-400 p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer ${numberPage === currentPage && "bg-red-100 border-red-600 border-[2px] text-red-700"}`} key={numberPage}>{numberPage}</li>)
         }
         <li onClick={handleClickNextPage} className='p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer'>{">"}</li>
         <li onClick={() => setCurrentPage(lastPage)} className='p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer'>{">>"}</li>
       </ul>
 
       {/*seccion  lista de pokemons */}
-      <section className='grid justify-center gap-10 auto-rows-auto grid-cols-[repeat(auto-fill,_300px)] mb-10'>
+      <section className='grid justify-center gap-10 auto-rows-auto grid-cols-[repeat(auto-fill,_300px)] mb-'>
         {
           pokemonInPage.map(pokemon => <PokemonCard key={pokemon.url} pokemonUrl={pokemon.url} />)
         }
