@@ -37,8 +37,8 @@ const PokemonId = () => {
     bug: "border-[#62DB60]",
     ghost: "border-[#323569]",
     steel: "border-[#5E736C]",
-    water: "border-[#133258]",
-    electric: "border-[#0C1395]",
+    water: "border-[#349ECF]",
+    electric: "border-[#EFD736]",
     psychic: "border-[#5E736C]",
     ice: "border-[#6FBEDF]",
     dragon: "border-[#478A93]",
@@ -62,8 +62,8 @@ const PokemonId = () => {
     bug: "bg-[#62DB60]",
     ghost: "bg-[#323569]",
     steel: "bg-[#5E736C]",
-    water: "bg-[#133258]",
-    electric: "bg-[#0C1395]",
+    water: "bg-[#349ECF]",
+    electric: "bg-[#EFD736]",
     psychic: "bg-[#5E736C]",
     ice: "bg-[#6FBEDF]",
     dragon: "bg-[#478A93]",
@@ -87,8 +87,8 @@ const PokemonId = () => {
     bug: "text-[#62DB60]",
     ghost: "text-[#323569]",
     steel: "text-[#5E736C]",
-    water: "text-[#133258]",
-    electric: "text-[#0C1395]",
+    water: "text-[#349ECF]",
+    electric: "text-[#EFD736]",
     psychic: "text-[#5E736C]",
     ice: "text-[#6FBEDF]",
     dragon: "text-[#478A93]",
@@ -99,13 +99,13 @@ const PokemonId = () => {
   }
 
   return (
-    <section>
+    <section className='dark:text-white'>
       <Header />
-      <div className='bg-red-500 w-20 rounded-md text-center font-bold ml-5 mt-5'>
+      <div className='bg-red-500 w-20 rounded-md text-center font-bold ml-[5%] mt-5'>
         <Link to={`/pokedex/`}>Regresar</Link>
       </div>
       <section className='px-2 py-14 '>
-        <article className='max-w-[768px] mx-auto shadow-xl p-2'>
+        <article className='max-w-[768px] mx-auto shadow-xl p-2 dark:shadow-md dark:shadow-white'>
           {/* todo lo demas */}
           <section className={`relative bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} h-[150px]`}>
             <div className='w-[200px] mx-auto absolute left-1/2 -translate-x-1/2 -top-10'>
@@ -116,7 +116,7 @@ const PokemonId = () => {
           {/* informacion general */}
 
           <section>
-            <div className='mx-auto border-[1px] w-7 sm:w-10 px-1 my-4'>
+            <div className='mx-auto border-[2px] border-[#D3D3D3] w-7 sm:w-10 px-1 my-4'>
               <h3 className={`font-bold sm:text-xl ${colorsByType[pokemon?.types[0].type.name]}`}>#{pokemon?.id}</h3>
             </div>
 
@@ -144,7 +144,7 @@ const PokemonId = () => {
                 <h3 className='font-semibold'>Types</h3>
                 <section className='flex justify-center gap-4 mt-4 '>
                   {
-                    pokemon?.types.map(type => <article className={`${backgroundByType[pokemon?.types[0].type.name]} p-2 px-8 border-[1px] border-gray-300 capitalize w-[135px] sm:w-[150px]`} key={type.type.name}>{type.type.name}</article>)
+                    pokemon?.types.map(type => <article className={`${backgroundByType[pokemon?.types[0].type.name]} p-2 px-8 border-[1px] border-gray-300 text-white capitalize w-[135px] sm:w-[150px]`} key={type.type.name}>{type.type.name}</article>)
                   }
                 </section>
               </section>
@@ -154,7 +154,7 @@ const PokemonId = () => {
                 <h3 className='font-semibold'>Habilities</h3>
                 <section className='flex justify-center gap-4 mt-4 '>
                   {
-                    pokemon?.abilities.map(ability => <article className='p-2 px-8 w-[135px] sm:w-[150px] border-[1px] bg-gray-300 capitalize truncate' key={ability.ability.name}>{ability.ability.name}</article>)
+                    pokemon?.abilities.map(ability => <article className='p-2 px-8 w-[135px] sm:w-[150px] border-[1px] bg-gray-300 capitalize truncate dark:text-black' key={ability.ability.name}>{ability.ability.name}</article>)
                   }
                 </section>
               </section>

@@ -8,7 +8,7 @@ import PokemonId from './pages/PokemonId'
 function App() {
 
   return (
-    <section className=' min-h-screen'>
+    <section className=' min-h-screen bg-cover dark:bg-black '>
       <Routes>
         <Route path="/" element={<Home />} />
 

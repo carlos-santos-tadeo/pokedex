@@ -130,15 +130,15 @@ const Pokedex = () => {
 
       <section className='py-6 px-2 '>
         <h3 className='text-[#FE1936] font-bold mb-4 mt-1 sm:ml-[3%]'>Welcome {nameTrainer},
-          <span className='text-black font-normal'> here you can find your favorite pokemon</span></h3>
+          <span className='text-black font-normal dark:text-white'> here you can find your favorite pokemon</span></h3>
 
         <form onSubmit={handleSubmit} className='sm:grid sm:grid-cols-2 sm:mx-[5%] sm:my-7'>
-          <div className='shadow-md w-[85%] max-w-[420px] mx-auto'>
-            <input id='pokemonName' type="text" placeholder='Search your pokemon' className='w-[75%] h-[30px] sm:h-[45px]' />
+          <div className='shadow-md w-[85%] max-w-[420px] mx-auto dark:border-white dark:border-[1px]'>
+            <input id='pokemonName' type="text" placeholder=' Search your pokemon' className='w-[75%] h-[30px] sm:h-[45px] dark:bg-slate-400 dark:placeholder-black' />
             <button className='bg-[#D93F3F] text-white w-[25%] h-[30px] sm:h-[45px]'>Search</button>
           </div>
 
-          <select className='border-slate-100 rounded border-[1px] ml-5 mt-2 max-w-[400px] ' onChange={(e) => setCurrentType(e.target.value)} >
+          <select className='border-slate-100 dark:bg-slate-400 rounded border-[1px] ml-5 mt-2 max-w-[400px] ' onChange={(e) => setCurrentType(e.target.value)} >
             <option className='bg-[#ED8F8F] ' value="">All</option>
             {
               types.map((type) => (

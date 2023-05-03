@@ -14,8 +14,8 @@ const bordersByType = {
   bug: "border-[#62DB60]",
   ghost: "border-[#323569]",
   steel: "border-[#5E736C]",
-  water: "border-[#133258]",
-  electric: "border-[#0C1395]",
+  water: "border-[#349ECF]",
+  electric: "border-[#EFD736]",
   psychic: "border-[#5E736C]",
   ice: "border-[#6FBEDF]",
   dragon: "border-[#478A93]",
@@ -39,8 +39,8 @@ const backgroundByType = {
   bug: "from-[#62DB60] to-black",
   ghost: "from-[#323569] to-black",
   steel: "from-[#5E736C] to-black",
-  water: "from-[#133258] to-black",
-  electric: "from-[#0C1395] to-black",
+  water: "from-[#349ECF] to-black",
+  electric: "from-[#EFD736] to-black",
   psychic: "from-[#5E736C] to-black",
   ice: "from-[#6FBEDF] to-black",
   dragon: "from-[#478A93] to-black",
@@ -64,8 +64,8 @@ const colorsByType = {
   bug: "text-[#62DB60]",
   ghost: "text-[#323569]",
   steel: "text-[#5E736C]",
-  water: "text-[#133258]",
-  electric: "text-[#0C1395]",
+  water: "text-[#349ECF]",
+  electric: "text-[#EFD736]",
   psychic: "text-[#5E736C]",
   ice: "text-[#6FBEDF]",
   dragon: "text-[#478A93]",
@@ -100,7 +100,7 @@ const PokemonCard = ({ pokemonUrl }) => {
       {/* seccion inferior */}
       <section>
         <h3 className={`mt-10 text-2xl font-bold ${colorsByType[pokemon?.types[0].type.name]}`}>{pokemon?.name}</h3>
-        <h4 className='capitalize'>{types}</h4>
+        <h4 className='capitalize dark:text-white'>{types}</h4>
         <span className='text-[#9F9F9F] text-sm'>Type</span>
         <hr />
         <section className='grid grid-cols-3 gap-2 p-2 '>
