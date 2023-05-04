@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Header from '../components/pokedex/Header'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
@@ -18,9 +18,15 @@ const Pokedex = () => {
   //estado global donde se almacena el nombre del usuario
   const nameTrainer = useSelector(store => store.nameTrainer)
 
+  //
+  const input = useRef(null)
+  const option = useRef(null)
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    setPokemonName(e.target.pokemonName.value)
+    setPokemonName(e.target.pokemonName.value) 
+    setCurrentType("")
+
   }
 
   const pokemonsByName = pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(pokemonName.toLocaleLowerCase()))
@@ -52,23 +58,23 @@ const Pokedex = () => {
       }
     }
 
-    return {pokemonInPage, lastPage, pagesInBlock}
+    return { pokemonInPage, lastPage, pagesInBlock }
 
   }
 
-  const {lastPage,pagesInBlock, pokemonInPage} = paginationLogic()
+  const { lastPage, pagesInBlock, pokemonInPage } = paginationLogic()
 
-  
-  const handleClickPreviusPage = () =>{
-    const newCurrentPage = currentPage - 1 
-    if(newCurrentPage >= 1){
+
+  const handleClickPreviusPage = () => {
+    const newCurrentPage = currentPage - 1
+    if (newCurrentPage >= 1) {
       setCurrentPage(newCurrentPage)
     }
   }
 
   const handleClickNextPage = () => {
-    const newCurrentPage = currentPage + 1 
-    if(newCurrentPage <= lastPage){
+    const newCurrentPage = currentPage + 1
+    if (newCurrentPage <= lastPage) {
       setCurrentPage(newCurrentPage)
     }
   }
@@ -120,8 +126,13 @@ const Pokedex = () => {
   useEffect(() => {
     setCurrentPage(1)
   }, [pokemonName, currentType])
-  
 
+  useEffect(() => {
+    setPokemonName("")
+    input.current.value = ""
+  }, [currentType])
+
+  
 
 
   return (
@@ -134,15 +145,15 @@ const Pokedex = () => {
 
         <form onSubmit={handleSubmit} className='sm:grid sm:grid-cols-2 sm:mx-[5%] sm:my-7'>
           <div className='shadow-md w-[85%] max-w-[420px] mx-auto dark:border-white dark:border-[1px]'>
-            <input id='pokemonName' type="text" placeholder=' Search your pokemon' className='w-[75%] h-[30px] sm:h-[45px] dark:bg-slate-400 dark:placeholder-black' />
+            <input ref={input} id='pokemonName' type="text" placeholder=' Search your pokemon' className='w-[75%] h-[30px] sm:h-[45px] dark:bg-slate-400 dark:placeholder-black' />
             <button className='bg-[#D93F3F] text-white w-[25%] h-[30px] sm:h-[45px]'>Search</button>
           </div>
 
           <select className='border-slate-100 dark:bg-slate-400 rounded border-[1px] ml-5 mt-2 max-w-[400px] ' onChange={(e) => setCurrentType(e.target.value)} >
-            <option className='bg-[#ED8F8F] ' value="">All</option>
+            <option ref={option} className='bg-[#ED8F8F] ' value="">All</option>
             {
               types.map((type) => (
-                <option className='capitalize ' key={type} value={type}>
+                <option  className='capitalize ' key={type} value={type}>
                   {type}
                 </option>
               ))}
@@ -151,12 +162,12 @@ const Pokedex = () => {
       </section>
 
       {/* paginacion */}
-      
+
       <ul className='flex gap-3 justify-center py-4 px-2 flex-wrap'>
-      <li onClick={() => setCurrentPage(1)} className='p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer'>{"<<"}</li>
+        <li onClick={() => setCurrentPage(1)} className='p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer'>{"<<"}</li>
         <li onClick={handleClickPreviusPage} className='p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer'>{"<"}</li>
         {
-          pagesInBlock.map(numberPage => <li onClick={() => setCurrentPage(numberPage)} className={`hover:bg-red-400 p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer ${numberPage === currentPage && "bg-red-300 text-white"}`} key={numberPage}>{numberPage}</li>)
+          pagesInBlock.map(numberPage => <li onClick={() => setCurrentPage(numberPage)} className={`hover:bg-red-400 p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer ${numberPage === currentPage && "animate-pulse"}`} key={numberPage}>{numberPage}</li>)
         }
         <li onClick={handleClickNextPage} className='p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer'>{">"}</li>
         <li onClick={() => setCurrentPage(lastPage)} className='p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer'>{">>"}</li>

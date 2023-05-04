@@ -49,28 +49,28 @@ const PokemonId = () => {
   }
 
   const backgroundByType = {
-    grass: "bg-green-500",
-    fire: "bg-red-500",
-    grass: "bg-green-500",
-    fire: "bg-red-500",
-    normal: "bg-[#735259]",
-    fighting: "bg-[#96402A]",
-    flying: "bg-[#735259]",
-    poison: "bg-[#5B3184]",
-    ground: "bg-[#654008]",
-    rock: "bg-[#7E7E7E]",
-    bug: "bg-[#62DB60]",
-    ghost: "bg-[#323569]",
-    steel: "bg-[#5E736C]",
-    water: "bg-[#349ECF]",
-    electric: "bg-[#EFD736]",
-    psychic: "bg-[#5E736C]",
-    ice: "bg-[#6FBEDF]",
-    dragon: "bg-[#478A93]",
-    dark: "bg-[#030706]",
-    fairy: "bg-[#971B45]",
-    unknown: "bg-[]",
-    shadow: "bg-[#323569]"
+    grass: "from-green-500 to-black",
+    fire: "from-red-500 to-black",
+    grass: "from-green-500 to-black",
+    fire: "from-red-500 to-black",
+    normal: "from-[#735259] to-black",
+    fighting: "from-[#96402A] to-black",
+    flying: "from-[#735259] to-black",
+    poison: "from-[#5B3184] to-black",
+    ground: "from-[#654008] to-black",
+    rock: "from-[#7E7E7E] to-black",
+    bug: "from-[#62DB60] to-black",
+    ghost: "from-[#323569] to-black",
+    steel: "from-[#5E736C] to-black",
+    water: "from-[#349ECF] to-black",
+    electric: "from-[#EFD736] to-black",
+    psychic: "from-[#5E736C] to-black",
+    ice: "from-[#6FBEDF] to-black",
+    dragon: "from-[#478A93] to-black",
+    dark: "from-[#030706] to-black",
+    fairy: "from-[#971B45] to-black",
+    unknown: "from-[]",
+    shadow: "from-[#323569] to-black"
   }
 
   const colorsByType = {
@@ -105,18 +105,18 @@ const PokemonId = () => {
         <Link to={`/pokedex/`}>Regresar</Link>
       </div>
       <section className='px-2 py-14 '>
-        <article className='max-w-[768px] mx-auto shadow-xl p-2 dark:shadow-md dark:shadow-white'>
+        <article className='max-w-[768px] rounded-lg mx-auto shadow-xl p-2 dark:bg-slate-900 dark:shadow-md dark:shadow-white'>
           {/* todo lo demas */}
-          <section className={`relative bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} h-[150px]`}>
+          <section className={`rounded-lg bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} relative h-[150px]`}>
             <div className='w-[200px] mx-auto absolute left-1/2 -translate-x-1/2 -top-10'>
-              <img src={pokemon?.sprites.other["official-artwork"].front_default} alt="" />
+              <img className='hover:animate-pulse animate-bounce' src={pokemon?.sprites.other["official-artwork"].front_default} alt="" />
             </div>
           </section>
 
           {/* informacion general */}
 
           <section>
-            <div className='mx-auto border-[2px] border-[#D3D3D3] w-7 sm:w-10 px-1 my-4'>
+            <div className='mx-auto border-[2px] border-[#D3D3D3] w-10 text-center rounded-md sm:w-10 px-1 my-4'>
               <h3 className={`font-bold sm:text-xl ${colorsByType[pokemon?.types[0].type.name]}`}>#{pokemon?.id}</h3>
             </div>
 
@@ -144,7 +144,7 @@ const PokemonId = () => {
                 <h3 className='font-semibold'>Types</h3>
                 <section className='flex justify-center gap-4 mt-4 '>
                   {
-                    pokemon?.types.map(type => <article className={`${backgroundByType[pokemon?.types[0].type.name]} p-2 px-8 border-[1px] border-gray-300 text-white capitalize w-[135px] sm:w-[150px]`} key={type.type.name}>{type.type.name}</article>)
+                    pokemon?.types.map(type => <article className={`bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} p-2 px-8 border-[1px] border-gray-300 text-white capitalize w-[135px] sm:w-[150px]`} key={type.type.name}>{type.type.name}</article>)
                   }
                 </section>
               </section>
@@ -154,7 +154,7 @@ const PokemonId = () => {
                 <h3 className='font-semibold'>Habilities</h3>
                 <section className='flex justify-center gap-4 mt-4 '>
                   {
-                    pokemon?.abilities.map(ability => <article className='p-2 px-8 w-[135px] sm:w-[150px] border-[1px] bg-gray-300 capitalize truncate dark:text-black' key={ability.ability.name}>{ability.ability.name}</article>)
+                    pokemon?.abilities.map(ability => <article className={`p-2 px-8 w-[135px] sm:w-[150px] border-[1px] bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} capitalize truncate`} key={ability.ability.name}>{ability.ability.name}</article>)
                   }
                 </section>
               </section>
