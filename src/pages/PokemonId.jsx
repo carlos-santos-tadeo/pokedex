@@ -154,7 +154,7 @@ const PokemonId = () => {
                 <h3 className='font-semibold'>Habilities</h3>
                 <section className='flex justify-center gap-4 mt-4 '>
                   {
-                    pokemon?.abilities.map(ability => <article className={`p-2 px-8 w-[135px] sm:w-[150px] border-[1px] bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} capitalize truncate`} key={ability.ability.name}>{ability.ability.name}</article>)
+                    pokemon?.abilities.map(ability => <article className={`p-2 px-8 w-[135px] sm:w-[150px] border-[1px] bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} capitalize truncate text-white`} key={ability.ability.name}>{ability.ability.name}</article>)
                   }
                 </section>
               </section>
