@@ -102,14 +102,14 @@ const PokemonId = () => {
     <section className='dark:text-white'>
       <Header />
       <div className='bg-red-500 w-20 rounded-md text-center font-bold ml-[5%] mt-5'>
-        <Link to={`/pokedex/`}>Regresar</Link>
+        <Link to={`/pokedex/`}>Go back <i class='sm:text-xl text-lg bx bx-arrow-back'></i></Link>
       </div>
       <section className='px-2 py-14 '>
         <article className='max-w-[768px] rounded-lg mx-auto shadow-xl p-2 dark:bg-slate-900 dark:shadow-md dark:shadow-white'>
           {/* todo lo demas */}
           <section className={`rounded-lg bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} relative h-[150px]`}>
             <div className='w-[200px] mx-auto absolute left-1/2 -translate-x-1/2 -top-10'>
-              <img className='hover:animate-pulse animate-bounce' src={pokemon?.sprites.other["official-artwork"].front_default} alt="" />
+              <img className='animate-bounce' src={pokemon?.sprites.other["official-artwork"].front_default} alt="" />
             </div>
           </section>
 
@@ -185,6 +185,7 @@ const PokemonId = () => {
               }
             </section>
           </section>
+          
         </article>
       </section>
     </section>

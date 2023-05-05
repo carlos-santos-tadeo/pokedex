@@ -11,6 +11,7 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    localStorage.setItem("pokemonsPerPage","9")
     dispatch(setNameTrainer(e.target.nameTrainer.value))
     navigate("/pokedex")
   }

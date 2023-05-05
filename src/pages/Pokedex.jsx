@@ -17,23 +17,22 @@ const Pokedex = () => {
   const [currentPage, setCurrentPage] = useState(1)
   //estado global donde se almacena el nombre del usuario
   const nameTrainer = useSelector(store => store.nameTrainer)
+  //estado que maneja el numero de pokemones por pagina
+  const [pokemonsPerPage, setPokemonsByPage] = useState(localStorage.getItem("pokemonsPerPage"))
 
-  //
+
   const input = useRef(null)
-  const option = useRef(null)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setPokemonName(e.target.pokemonName.value) 
-    setCurrentType("")
-
+    setPokemonName(e.target.pokemonName.value)
   }
 
   const pokemonsByName = pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(pokemonName.toLocaleLowerCase()))
 
   const paginationLogic = () => {
     //cantidad de pokemones por pagina
-    const POKEMONS_PER_PAGE = 12
+    const POKEMONS_PER_PAGE = pokemonsPerPage
 
     //pokemos que se van a mostrar en la pagina actual
     const sliceStart = (currentPage - 1) * POKEMONS_PER_PAGE
@@ -63,6 +62,22 @@ const Pokedex = () => {
   }
 
   const { lastPage, pagesInBlock, pokemonInPage } = paginationLogic()
+
+
+  if (localStorage.theme === "true" || (!("theme" in localStorage) && window.matchMedia("(prefers-colors-scheme: dark)").matches)) {
+    document.documentElement.classList.add("dark")
+  } else {
+    document.documentElement.classList.remove("dark")
+  }
+
+  const toggleDarkMode = useRef(document.documentElement.className === "dark")
+
+  const changeDarkMode = () => {
+    toggleDarkMode.value = document.documentElement.classList.toggle("dark")
+    toggleDarkMode.value
+      ? (localStorage.theme = "true")
+      : (localStorage.theme = "false")
+  }
 
 
   const handleClickPreviusPage = () => {
@@ -132,16 +147,33 @@ const Pokedex = () => {
     input.current.value = ""
   }, [currentType])
 
-  
+
 
 
   return (
     <section className='min-h-screen '>
       <Header />
+      <div className='mt-3 gap-10 flex'>
+        <button onClick={changeDarkMode} className='flex gap-1 bg-black dark:text-black dark:shadow-white dark:bg-slate-400 text-white font-semibold text-[13px] ml-[5%] hover:bg-black hover:text-white hover:shadow-black hover:shadow-lg rounded-md px-1'>
+          <i className={`flex rounded-lg w-[23px] h-[22px] justify-center items-center dark:bg-slate-400 bg-black text-white text-[20px] bx bxs-brightness-half`}></i>
+          <span className=''>Dark/Light</span>
+        </button>
+      </div>
+      <div className='flex max-w-[300px] sm:text-xl items-center mx-auto mt-2 font-medium text-red-600'>
+        <span>Pokemons per page: </span>
+        <select className=' border-slate-100 text-black dark:bg-slate-400 rounded-md border-[1px] ml-5 mt-2 max-w-[100px] ' onChange={(e) => setPokemonsByPage(e.target.value)} >
+          <option value="9"></option>
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="12">12</option>
+          <option value="16">16</option>
+          <option value="20">20</option>
+        </select>
+      </div>
 
       <section className='py-6 px-2 '>
-        <h3 className='text-[#FE1936] font-bold mb-4 mt-1 sm:ml-[3%]'>Welcome {nameTrainer},
-          <span className='text-black font-normal dark:text-white'> here you can find your favorite pokemon</span></h3>
+        <h3 className='text-[#FE1936] sm:text-xl font-bold mb-4 mt-1 sm:ml-[3%]'>Welcome {nameTrainer},
+          <span className='text-black sm:text-xl font-normal dark:text-white'> here you can find your favorite pokemon</span></h3>
 
         <form onSubmit={handleSubmit} className='sm:grid sm:grid-cols-2 sm:mx-[5%] sm:my-7'>
           <div className='shadow-md w-[85%] max-w-[420px] mx-auto dark:border-white dark:border-[1px]'>
@@ -150,10 +182,10 @@ const Pokedex = () => {
           </div>
 
           <select className='border-slate-100 dark:bg-slate-400 rounded border-[1px] ml-5 mt-2 max-w-[400px] ' onChange={(e) => setCurrentType(e.target.value)} >
-            <option ref={option} className='bg-[#ED8F8F] ' value="">All</option>
+            <option className='bg-[#ED8F8F] ' value="">All</option>
             {
               types.map((type) => (
-                <option  className='capitalize ' key={type} value={type}>
+                <option className='capitalize ' key={type} value={type}>
                   {type}
                 </option>
               ))}

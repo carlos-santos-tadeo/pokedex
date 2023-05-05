@@ -4,22 +4,6 @@ import { setNameTrainer } from '../../store/slices/nameTrainer.slice'
 
 const Header = () => {
 
-  if (localStorage.theme === "true" || (!("theme" in localStorage) && window.matchMedia("(prefers-colors-scheme: dark)").matches))
-  {
-    document.documentElement.classList.add("dark")
-  }else{
-    document.documentElement.classList.remove("dark")
-  }
-
-  const toggleDarkMode = useRef(document.documentElement.className === "dark")
-
-  const changeDarkMode = () => {
-    toggleDarkMode.value = document.documentElement.classList.toggle("dark")
-    toggleDarkMode.value
-    ? (localStorage.theme = "true")
-    : (localStorage.theme = "false")
-  }
-
   const dispatch = useDispatch()
 
   const handleClickLogout = () => {
@@ -37,12 +21,7 @@ const Header = () => {
         <div className='h-12 bg-black dark:bg-slate-400'></div>
         <div className='h-20 aspect-square rounded-full bg-white border-[8px] border-black absolute -bottom-4 right-0 -translate-x-1/2 after:content-[""] after:h-12 after:aspect-square after:rounded-full after:bg-gray-700 after:absolute after:border-[7px] after:border-black after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2'><i onClick={handleClickLogout} className='bx bx-log-out-circle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white z-30 text-2xl hover:text-red-500 cursor-pointer animate-pulse'></i></div>
       </div>
-      <div className='mt-3'>
-        <button onClick={changeDarkMode} className='flex gap-1 bg-black dark:text-black dark:shadow-white dark:bg-slate-400 text-white font-semibold text-[13px] ml-[5%] hover:bg-black hover:text-white hover:shadow-black hover:shadow-lg rounded-md px-1'>
-          <i className={`flex rounded-lg w-[23px] h-[22px] justify-center items-center dark:bg-slate-400 bg-black text-white text-[20px] bx bxs-brightness-half`}></i>
-          <span className=''>Dark/Light</span>
-        </button>
-      </div>      
+
     </section>
   )
 }
