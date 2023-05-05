@@ -206,7 +206,7 @@ const Pokedex = () => {
       </ul>
 
       {/*seccion  lista de pokemons */}
-      <section className='grid justify-center gap-10 auto-rows-auto grid-cols-[repeat(auto-fill,_300px)]'>
+      <section className='grid pb-12 justify-center gap-10 auto-rows-auto grid-cols-[repeat(auto-fill,_300px)]'>
         {
           pokemonInPage.map(pokemon => <PokemonCard key={pokemon.url} pokemonUrl={pokemon.url} />)
         }
