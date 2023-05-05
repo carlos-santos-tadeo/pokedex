@@ -99,7 +99,7 @@ const PokemonCard = ({ pokemonUrl }) => {
 
       {/* seccion inferior */}
       <section>
-        <h3 className={`mt-10 text-2xl font-bold ${colorsByType[pokemon?.types[0].type.name]}`}>{pokemon?.name}</h3>
+        <h3 className={`mt-10 text-2xl font-bold ${pokemon?.types[0].type.name === "dark" ? "text-[#6FBEDF]" : colorsByType[pokemon?.types[0].type.name]}`}>{pokemon?.name}</h3>
         <h4 className='capitalize dark:text-white'>{types}</h4>
         <span className='text-[#9F9F9F] text-sm'>Type</span>
         <hr />
@@ -108,7 +108,7 @@ const PokemonCard = ({ pokemonUrl }) => {
             pokemon?.stats.map(stat => (
               <div key={stat.stat.name}>
                 <h5 className='uppercase text-xs text-[#9F9F9F]'>{stat.stat.name}</h5>
-                <span className={`font-bold text-lg ${colorsByType[pokemon?.types[0].type.name]}`} >{stat.base_stat}</span>
+                <span className={`font-bold text-lg ${pokemon?.types[0].type.name === "dark" ? "text-white" : colorsByType[pokemon?.types[0].type.name]}`} >{stat.base_stat}</span>
               </div>
             ))
           }
@@ -120,26 +120,3 @@ const PokemonCard = ({ pokemonUrl }) => {
 
 export default PokemonCard
 
-
-// const bordersByType = {
-//   normal: "",
-//   fighting: "",
-//   flying: "",
-//   poison: "",
-//   ground: "",
-//   rock: "",
-//   bug: "",
-//   ghost: "",
-//   steel: "",
-//   fire: "",
-//   water: "",
-//   grass: "",
-//   electric: "",
-//   psychic: "",
-//   ice: "",
-//   dragon: "",
-//   dark: "",
-//   fairy: "",
-//   unknown: "",
-//   shadow: "",
-// };
