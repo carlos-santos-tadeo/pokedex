@@ -19,7 +19,7 @@ const PokemonId = () => {
 
   }, [])
 
-
+  const pokemonsMoves = pokemon?.moves.slice(0, 18)
   const getPercentStarBar = (stat_base) => {
     const percentBarProgres = Math.floor((stat_base * 100) / 255)
     return `${percentBarProgres}%`
@@ -102,10 +102,10 @@ const PokemonId = () => {
     <section className='dark:text-white'>
       <Header />
       <div className='bg-red-500 w-20 rounded-md text-center font-bold ml-[5%] mt-5'>
-        <Link to={`/pokedex/`}>Go back <i class='sm:text-xl text-lg bx bx-arrow-back'></i></Link>
+        <Link to={`/pokedex/`}>Go back <i className='sm:text-xl text-lg bx bx-arrow-back'></i></Link>
       </div>
       <section className='px-2 py-14 '>
-        <article className='max-w-[768px] rounded-lg mx-auto shadow-xl p-2 dark:bg-slate-900 dark:shadow-md dark:shadow-white'>
+        <article className='max-w-[768px] rounded-lg mx-auto shadow-xl p-2 dark:bg-slate-900 dark:shadow-md dark:shadow-white bg-slate-100'>
           {/* todo lo demas */}
           <section className={`rounded-lg bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} relative h-[150px]`}>
             <div className='w-[200px] mx-auto absolute left-1/2 -translate-x-1/2 -top-10'>
@@ -166,7 +166,7 @@ const PokemonId = () => {
 
           <section className='py-7'>
             <div className='grid grid-cols-[auto_1fr_auto] items-center gap-3'>
-              <h3 className=' text-2xl font-semibold'>Stats</h3><hr /><img className='w-[45px]' src="/images/Group.png" alt="" />
+              <h3 className=' text-2xl font-semibold'>Stats</h3><hr /><img className='w-[45px]' src="/images/Group0.png" alt="" />
             </div>
             <section className='mt-3'>
               {
@@ -185,8 +185,24 @@ const PokemonId = () => {
               }
             </section>
           </section>
-          
         </article>
+
+
+        <section className='rounded-lg max-w-[768px] mx-auto mt-7 mb-2 py-3 shadow-xl bg-slate-100 border-[2px]'>
+
+          <div className='grid grid-cols-[auto_1fr_auto] items-center gap-3 my-3 px-3'>
+            <h3 className=' text-xl font-semibold'>Movements</h3><hr className='border-[1px]'/><img className='w-[40px]' src="/images/Group0.png" alt="" />
+          </div>
+
+          <div className='flex justify-center gap-3 mb-2 flex-wrap'>
+            {
+              pokemonsMoves?.map((movement) => <article key={movement.move.url} className={`capitalize rounded-xl max-w-max py-1 px-4 hover:bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} hover:text-white border-[1px] border-gray-300 shadow-md bg-white font-semibold`}>{movement.move.name} </article>)
+            }
+          </div>
+
+       
+        </section>
+
       </section>
     </section>
   )
