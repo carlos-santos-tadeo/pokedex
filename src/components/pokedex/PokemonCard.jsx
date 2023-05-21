@@ -98,7 +98,7 @@ const PokemonCard = ({ pokemonUrl }) => {
       </section>
 
       {/* seccion inferior */}
-      <section>
+      <section className='dark:bg-slate-900'>
         <h3 className={`mt-10 text-2xl font-bold ${pokemon?.types[0].type.name === "dark" ? "text-[#6FBEDF]" : colorsByType[pokemon?.types[0].type.name]}`}>{pokemon?.name}</h3>
         <h4 className='capitalize dark:text-white'>{types}</h4>
         <span className='text-[#9F9F9F] text-sm'>Type</span>

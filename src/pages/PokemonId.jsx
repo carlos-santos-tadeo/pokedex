@@ -188,7 +188,7 @@ const PokemonId = () => {
         </article>
 
 
-        <section className='rounded-lg max-w-[768px] mx-auto mt-7 mb-2 py-3 shadow-xl bg-slate-100 border-[2px]'>
+        <section className='rounded-lg max-w-[768px] mx-auto mt-7 mb-2 py-3 shadow-xl bg-slate-100 dark:bg-slate-400/70 border-[2px]'>
 
           <div className='grid dark:text-black grid-cols-[auto_1fr_auto] items-center gap-3 my-3 px-3'>
             <h3 className=' text-xl font-semibold'>Movements</h3><hr className='border-[1px]'/><img className='w-[40px]' src="/images/Group0.png" alt="" />
